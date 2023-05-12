@@ -1,0 +1,48 @@
+﻿@model ModeloVehiculos
+
+@{
+    ViewData["Title"] = "Editar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="card">
+    <h5 class="card-header">Editar Vehículo</h5>
+    <div class="card-body">
+        <form asp-action="Editar" asp-controller="Mantenedor" method="post">
+            <input asp-for="Id" type="hidden" class="form-control">
+            <div class="mb-3">
+                <label class="form-label">Marca</label>
+                <input asp-for="Marca" type="text" class="form-control">
+                <span asp-validation-for="Marca" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Modelo</label>
+                <input asp-for="Modelo" type="text" class="form-control">
+                <span asp-validation-for="Modelo" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Color</label>
+                <input asp-for="Color" type="text" class="form-control">
+                <span asp-validation-for="Color" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Patente</label>
+                <input asp-for="Patente" type="text" class="form-control">
+                <span asp-validation-for="Patente" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Año</label>
+                <input asp-for="Anio" type="number" maxlength="4" class="form-control">
+                <span asp-validation-for="Anio" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Cilindrada</label>
+                <input asp-for="Cilindrada" type="number" class="form-control">
+                <span asp-validation-for="Cilindrada" class="text-danger"></span>
+            </div>
+            <button type="submit" class="btn btn-outline-success">Guardar</button>
+            <a asp-action="Listar" asp-controller="Mantenedor" class="btn btn-outline-warning">Volver a la lista</a>
+        </form>
+    </div>
+</div>
+

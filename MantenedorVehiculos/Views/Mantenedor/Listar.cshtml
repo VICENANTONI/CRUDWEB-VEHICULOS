@@ -1,0 +1,69 @@
+﻿@model List<ModeloVehiculos>
+
+@{
+    ViewData["Title"] = "Listar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="card">
+    <h5 class="card-header">Vehículos Registrados</h5>
+    <div class="card-body">
+        <a asp-action="Guardar" asp-controller="Mantenedor" class="btn btn-success">Registrar Nuevo Vehículo</a>
+        <input type="text" id="filtro" onkeyup="buscador()" placeholder="Buscar por Marca">
+        <hr />
+
+        <table class="table" id="tabla">
+            <thead class="table-dark">
+                <tr>
+                    <th>Marca</th>
+                    <th>Modelo</th>
+                    <th>Color</th>
+                    <th>Patente</th>
+                    <th>Año</th>
+                    <th>Cilindrada</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach(var item in Model)
+                {
+                    <tr>
+                        <td>@item.Marca</td>
+                        <td>@item.Modelo</td>
+                        <td>@item.Color</td>
+                        <td>@item.Patente</td>
+                        <td>@item.Anio</td>
+                        <td>@item.Cilindrada</td>
+                        <td>
+                            <a asp-action="Editar" asp-controller="Mantenedor" class="btn btn-primary btn-sm" asp-route-idVehiculo="@item.Id">Editar</a>
+                            <a asp-action="Eliminar" asp-controller="Mantenedor" class="btn btn-danger btn-sm" asp-route-idVehiculo="@item.Id">Eliminar</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+        <script>
+            function buscador() {
+                var input, filter, table, tr, td, i, txtValue;
+                input = document.getElementById("filtro");
+                filter = input.value.toUpperCase();
+                table = document.getElementById("tabla");
+                tr = table.getElementsByTagName("tr");
+                for (i = 0; i < tr.length; i++) {
+                    td = tr[i].getElementsByTagName("td")[0];
+                    if (td) {
+                        txtValue = td.textContent || td.innerText;
+                        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                            tr[i].style.display = "";
+                        } else {
+                            tr[i].style.display = "none";
+                        }
+                    }
+                }
+            }
+        </script>
+    </div>
+
+</div>
+

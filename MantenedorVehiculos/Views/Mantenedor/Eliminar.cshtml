@@ -1,0 +1,21 @@
+﻿@model ModeloVehiculos
+
+@{
+    ViewData["Title"] = "Eliminar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="card">
+    <h5 class="card-header">Editar Vehículo</h5>
+    <div class="card-body">
+        <form asp-action="Eliminar" asp-controller="Mantenedor" method="post">
+            <input asp-for="Id" type="hidden" class="form-control">
+            <div class="alert alert-danger" role="alert">
+                ¿Está seguro de eliminar el vehículo de Marca: @Html.DisplayTextFor(m => m.Marca), Modelo: @Html.DisplayFor(m => m.Modelo) y Patente: @Html.DisplayFor(m => m.Patente)?
+            </div>
+            <button type="submit" class="btn btn-outline-danger">Eliminar</button>
+            <a asp-action="Listar" asp-controller="Mantenedor" class="btn btn-outline-warning">Volver a la lista</a>
+        </form>
+    </div>
+</div>
+
